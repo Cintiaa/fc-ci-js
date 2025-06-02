@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
  
     outputs: 
-      version: ${{ steps.export.outputs.version }
+      version: ${{ steps.export.outputs.version }}
 
     steps:      
       - name: Export as outputs
