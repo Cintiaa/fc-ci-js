@@ -1,0 +1,33 @@
+name: CI-app-js
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    outputs: 
+      version: ${{ steps.export.outputs.version }
+
+    steps:      
+      - name: Export as outputs
+        id: export
+        run: | 
+          echo "version=1.0.0" >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: hml
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 12.x
+
+      - run: echo "Using version $VERSION"
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
