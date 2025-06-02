@@ -28,6 +28,4 @@ jobs:
         with:
           node-version: 12.x
 
-      - run: echo "Using version $VERSION"
-        env:
-          VERSION: ${{ needs.build.outputs.version }}
+      - run: echo "Using version ${{ needs.build.outputs.version }}"
